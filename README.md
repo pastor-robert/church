@@ -13,6 +13,7 @@ It will have tools for:
 * preaching
 * creating bulletins
 * finances
+* church calendar
 * etc.
 
 It will also have public-facing components, including
