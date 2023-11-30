@@ -2,7 +2,7 @@ from django.conf import settings
 from django.shortcuts import render
 from address.models import Address
 from person.forms import PersonForm
-from person.models import Person, Church
+from person.models import Person
 
 # Create your views here.
 

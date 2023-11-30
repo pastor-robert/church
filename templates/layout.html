@@ -21,8 +21,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        <a class="nav-link" href="{% url 'log' %}">Log Message</a>
+                        <a class="nav-link disabled" href="{% url 'person.home' %}">Home</a>
+			<a class="nav-link" href="{% url 'directory.home' %}">Directory</a>
+                        <a class="nav-link" href="{% url 'person.log' %}">Log Message</a>
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         <a class="nav-link" href="/admin/">Admin</a>

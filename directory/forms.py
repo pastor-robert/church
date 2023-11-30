@@ -1,10 +1,10 @@
 from django import forms
 from address.forms import AddressField, AddressWidget
-from .models import Person
+from .models import Church
 
-class PersonForm(forms.ModelForm):
+class ChurchForm:
     class Meta:
-        model = Person
+        model = Church
         address = AddressField()
-        fields = "__all__"
+        fields = "__all__,people"
         widgets= {'address': AddressWidget(attrs={"style":"width: 300px"})}
