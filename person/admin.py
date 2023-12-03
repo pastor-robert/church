@@ -29,9 +29,5 @@ class CrowdAdmin(admin.ModelAdmin):
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
     """Person Admin """
-    formfield_overrides = {
-            AddressField: {
-                "widget": AddressWidget(
-                    attrs={
-                        "style": "width: 300px;"})}}
+    formfield_overrides = {AddressField: {"widget": AddressWidget(attrs={"style": "width: 300px;"})}}
     inlines = [MemberInline]

@@ -19,3 +19,4 @@ class ChurchAdmin(admin.ModelAdmin):
                 "widget": AddressWidget(
                     attrs={
                         "style": "width: 300px;"})}}
+    filter_horizontal = ['persons']
