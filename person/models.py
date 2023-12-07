@@ -8,6 +8,9 @@ class Contact(models.Model):
     name = models.CharField(max_length=200)
     address = AddressField(related_name='+', null=True, blank=True)
 
+    class Meta:
+        abstract = True
+
 class Person(Contact):
     """Person model.
     """
