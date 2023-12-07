@@ -5,6 +5,7 @@ from address.models import AddressField
 from phonenumber_field.modelfields import PhoneNumberField
 
 class Contact(models.Model):
+    """Abstract base class for a contact."""
     name = models.CharField(max_length=200)
     address = AddressField(related_name='+', null=True, blank=True)
 
@@ -12,8 +13,7 @@ class Contact(models.Model):
         abstract = True
 
 class Person(Contact):
-    """Person model.
-    """
+    """Person model."""
     email = models.EmailField(blank=True)
     email_confirmed = models.BooleanField(default=False)
     phone_number = PhoneNumberField(
@@ -23,6 +23,8 @@ class Person(Contact):
     phone_number_confirmed = models.BooleanField(default=False)
 
     def __str__(self):
+        # Silly pylint can't see runtime attributes.
+        # pylint: disable-next=no-member
         return f"{self.name} / {self.address or self.email or self.phone_number.as_national}"
 
 class Crowd(Contact):
