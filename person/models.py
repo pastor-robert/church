@@ -3,24 +3,24 @@
 from django.db import models
 from address.models import AddressField
 from phonenumber_field.modelfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
-class Person(models.Model):
-    """_summary_
-
-    Args:
-        models (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
+class Contact(models.Model):
     name = models.CharField(max_length=200)
     address = AddressField(related_name='+', null=True, blank=True)
+
+class Person(Contact):
+    """Person model.
+    """
     email = models.EmailField(blank=True)
     email_confirmed = models.BooleanField(default=False)
     #password_hash = models.CharField(max_length=128)
     #security_stamp = models.CharField(max_length=128)
     #concurrency_stamp = models.CharField(blank=True, max_length=128)
-    phone_number = PhoneNumberField(blank=True)
+    phone_number = PhoneNumberField(
+        region="US",
+        blank=True,
+    )
     phone_number_confirmed = models.BooleanField(default=False)
     #two_factor_enabled = models.BooleanField(default=False)
     #lockout_end = models.DateTimeField(null=True)
@@ -29,12 +29,12 @@ class Person(models.Model):
 
 
     def __str__(self):
-        return f"{self.name} ({self.address or self.email or self.phone_number})"
+        return f"{self.name} / {self.address or self.email or self.phone_number.as_national}"
 
-class Crowd(models.Model):
+class Crowd(Contact):
     """A group of people."""
-    name = models.CharField(max_length=200)
     persons = models.ManyToManyField(Person, related_name='crowds')
+
 
     def __str__(self):
         return f"{self.name}"

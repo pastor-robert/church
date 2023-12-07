@@ -7,7 +7,6 @@ class Church(Crowd):
     Church Model
       N.b. The church is-a Crowd, and also has-a Crowd.
     """
-    address = AddressField(related_name='+', blank=True, null=True)
     crowds = models.ManyToManyField(Crowd, related_name='churches')
 
     def __str__(self):

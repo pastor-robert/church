@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "person",
     "address",
     "directory",
+    "phonenumber_field",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
