@@ -6,9 +6,22 @@ from person.forms import PersonForm
 from person.models import Person
 
 def about(request):
+    """
+    This view returns the about page of the church.
+    
+    :param request: The HTTP request object.
+    :return: The rendered about page.
+    """
     return render(request, "church/about.html", {})
 
 def home(request):
+    """
+    This view returns the home page of the church. It also handles the POST request
+    for the PersonForm. If the form is valid, it saves the form and sets success to True.
+    
+    :param request: The HTTP request object.
+    :return: The rendered home page.
+    """
     addresses = Address.objects.all()
     success = False
     google_api_key_set = bool(settings.GOOGLE_API_KEY)
