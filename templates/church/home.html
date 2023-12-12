@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "church/layout.html" %}
 {% load static %}
 
 {% block title %}Church Directory{% endblock %}
@@ -6,31 +6,18 @@
 {% block content %}
 <style> input[type="text" i] { max-width: 1200px } </style>
 
-	{% comment %}
-		shadow-4 = box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)
-		rounded-3 = border-radius: 0.3rem
-		p-4 = padding: 1rem
-		style = inline CSS
-	{% endcomment %}
-	{% if user.is_authenticated %}
-	<div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
-		<h2>New Person:</h2>
-		<form method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<table>{{ form.as_table }}</table>
-			<input type="submit" value="Submit" />
-		</form>
-	</div>
+	{# TODO This is the wrong test. #}
+	{% if user.is_authenticated %} 
+		<div class="p-4 shadow-4 rounded-3 bg-light text-dark">
+			<h2>New Person:</h2>
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<table>{{ form.as_table }}</table>
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
 	{% endif %}
 
-
-	{% comment "" %}
-		d-flex = display: flex
-		flex-wrap = flex-wrap: wrap
-		flex-row = flex-direction: row
-		justify-content-start = justify-content: flex-start
-		m-5 = margin: 3rem
-	{% endcomment %}
 	<div class="d-flex flex-wrap flex-row justify-content-start m-5">
 		{% for person in person_set %}
 			{# Temporary img until we have real ones #}
