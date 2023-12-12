@@ -3,6 +3,7 @@
 from django.db import models
 from address.models import AddressField
 from phonenumber_field.modelfields import PhoneNumberField
+from django.db import models
 
 class Contact(models.Model):
     """Abstract base class for a contact."""
@@ -21,16 +22,12 @@ class Person(Contact):
         blank=True,
     )
     phone_number_confirmed = models.BooleanField(default=False)
+    portrait = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         # Silly pylint can't see runtime attributes.
         # pylint: disable-next=no-member
         return f"{self.name} / {self.address or self.email or self.phone_number.as_national}"
-
-class Crowd(Contact):
-    """A group of people."""
-    persons = models.ManyToManyField(Person, related_name='crowds')
-
 
     def __str__(self):
         return f"{self.name}"

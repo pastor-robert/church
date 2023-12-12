@@ -13,12 +13,13 @@ def home(request):
     person_set = Person.objects.all()
 
     if request.method == "POST":
-        form = PersonForm(request.POST)
+        form = PersonForm(request.POST, request.FILES)
         if form.is_valid():
             success = True
             form.save()
-    else:
-        form = PersonForm(initial={"address": Address.objects.last()})
+    #else:
+        #form = PersonForm(initial={"address": Address.objects.last()})
+    form = PersonForm()
 
     context = {
             "form": form,

@@ -1,6 +1,6 @@
 from django.db import models
 from address.models import AddressField
-from person.models import Crowd
+from crowd.models import Crowd
 
 class Church(Crowd):
     """

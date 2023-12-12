@@ -25,3 +25,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("about", views.about, name="about"),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += staticfiles_urlpatterns()

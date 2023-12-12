@@ -3,7 +3,6 @@
 import address.models
 from django.db import migrations, models
 import django.db.models.deletion
-import phonenumber_field.modelfields
 
 
 class Migration(migrations.Migration):
@@ -15,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Person",
+            name="Crowd",
             fields=[
                 (
                     "id",
@@ -27,19 +26,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("name", models.CharField(max_length=200)),
-                ("email", models.EmailField(blank=True, max_length=254)),
-                ("email_confirmed", models.BooleanField(default=False)),
-                (
-                    "phone_number",
-                    phonenumber_field.modelfields.PhoneNumberField(
-                        blank=True, max_length=128, region="US"
-                    ),
-                ),
-                ("phone_number_confirmed", models.BooleanField(default=False)),
-                (
-                    "portrait",
-                    models.ImageField(blank=True, null=True, upload_to="images/"),
-                ),
                 (
                     "address",
                     address.models.AddressField(
