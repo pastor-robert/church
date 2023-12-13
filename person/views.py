@@ -1,44 +1,20 @@
-from django.conf import settings
+"""
+This file is used to create the views for the person app.
+"""
+
 from django.shortcuts import render
-from address.models import Address
-from person.forms import PersonForm
 from person.models import Person
 
-# Create your views here.
 
-def home(request):
-    addresses = Address.objects.all()
-    success = False
-    google_api_key_set = bool(settings.GOOGLE_API_KEY)
-    person_set = Person.objects.all()
-
-    if request.method == "POST":
-        form = PersonForm(request.POST, request.FILES)
-        if form.is_valid():
-            success = True
-            form.save()
-    #else:
-        #form = PersonForm(initial={"address": Address.objects.last()})
-    form = PersonForm()
-
-    context = {
-            "form": form,
-            "google_api_key_set": google_api_key_set,
-            "success": success,
-            "addresses": addresses,
-            "person_set": person_set,
-            }
-    return render(request, "person/home.html", context)
-
-def about(request):
-    return render(request, "person/about.html", {})
 def contact(request):
-    return render(request, "person/about.html", {})
-def log_message(request):
+    """
+    This view returns the contact page of the church.
+    """
     return render(request, "person/about.html", {})
 
-def church(request):
-    all_persons = Person.objects.all()
-    return render(request, "person/church.html", {
-        "all_persons": all_persons,
-        })
+def log_message(request):
+    """
+    This view returns the log_message page of the church.
+    """
+    return render(request, "person/about.html", {})
+
