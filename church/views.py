@@ -4,6 +4,8 @@ This module contains the views for the church app.
 
 from django.shortcuts import render
 from django.conf import settings
+from django.contrib import messages
+
 from address.models import Address
 from person.forms import PersonForm
 from person.models import Person
@@ -36,6 +38,9 @@ def home(request):
         if form.is_valid():
             success = True
             form.save()
+            messages.success(request, f"Succesfully added {form.cleaned_data['name']} to the database.")
+        else: 
+            messages.error(request, "Please correct the errors below.") 
 
     form = PersonForm()
 

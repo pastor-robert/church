@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import INFO
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -76,6 +77,9 @@ TEMPLATES = [
         },
     },
 ]
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+MESSAGE_LEVEL = INFO
 
 WSGI_APPLICATION = "church.wsgi.application"
 
