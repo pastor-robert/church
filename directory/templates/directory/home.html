@@ -1,0 +1,62 @@
+{% extends "church/layout.html" %}
+{% load static %}
+
+{% block title %}Church Directory{% endblock %}
+{% block head %}{{ form.media }}{% endblock %}
+{% block content %}
+<style> input[type="text" i] { max-width: 1200px } </style>
+
+	{# TODO This is the wrong test. #}
+	{% if user.is_authenticated %} 
+		<div class="p-4 shadow-4 rounded-3 bg-light text-dark">
+			<h2>New Person:</h2>
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<table>{{ form.as_table }}</table>
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+	{% endif %}
+
+	<div class="d-flex flex-wrap flex-row justify-content-start m-5">
+		{% for person in person_set %}
+			{# Temporary img until we have real ones #}
+			{% cycle 'person/b.jpg' 'person/g.jpg' as image silent %}
+			{# p-2 = padding: 0.5rem #}
+			<div class="p-2"><figure>
+				{% if person.portrait %}
+				<img class="img-fluid"
+					src="{{ person.portrait.url }}"
+					style="width: 200px"
+					alt="{{ person.name }}"
+					title="{{ person.name }}"/>
+				{% else %}
+				<img class="img-fluid"
+				     src='/media/images/avatar.webp' }}"
+					style="width: 200px"
+					alt="{{ person.name }}"
+					title="{{ person.name }}"/>
+				{% endif %}
+				<figcaption>
+					{# Display whatever fields are available #}
+					{{ person.name }}<br/>
+					{% if person.address.street_number|length %}
+						{{ person.address.street_number }}
+						{{ person.address.route }}<br/>
+					{% endif %}
+					{% if person.address.locality.name|length %}
+						{{ person.address.locality.name }},
+						{{ person.address.locality.state.code }}
+						{{ person.address.locality.postal_code }}<br/>
+					{% endif %}
+					{% if person.phone_number.as_national|length %}
+						{{ person.phone_number.as_national }}<br/>
+					{% endif %}
+					{% if person.email|length %}
+						{{ person.email }}<br/>
+					{% endif %}
+				</figcaption>
+			</figure></div>
+		{% endfor %}{# for person in person_set #}
+	</div>
+{% endblock %}

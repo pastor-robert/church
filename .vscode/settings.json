@@ -1,7 +1,6 @@
 {
     "python.pythonPath": ".venv/bin/python",
     "pylint.args": [
-        "--django-settings-module=example.settings",
         "--load-plugins=pylint_django"
     ]
 }
