@@ -45,6 +45,8 @@ Thank you to the authors and contributors to the following projects:
 * Django
 * Bootstrap
 * django-address
+* django-phonenumber-field
+* django-phonenumbers
 
 And, of course:
 
