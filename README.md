@@ -34,7 +34,9 @@ Soli Deo Gloria.
 
 ### Authors
 
-Rob Adams, pastor-robert on github.
+Rob Adams,
+<rob@rob-adams.us>,
+@pastor-robert on github.
 
 ### External projects
 
@@ -48,6 +50,8 @@ And, of course:
 
 * Python
 * Linux
+
+Portions of this work were inspired by, adapted from, or copied from Github CoPilot suggestions.
 
 ## LICENSE
 
