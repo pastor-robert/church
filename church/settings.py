@@ -139,7 +139,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 MEDIA_URL='/media/'
 
-try:
-    from local_settings import *
-except ImportError:
-    pass
+GOOGLE_API_KEY=os.getenv('GOOGLE_API_KEY')

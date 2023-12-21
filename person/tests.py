@@ -9,6 +9,7 @@ class PersonModelTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             # Add the necessary fields for the address
+            raw="1 Main St"
         )
         self.person = Person.objects.create(
             name='Test Person',
@@ -20,4 +21,4 @@ class PersonModelTest(TestCase):
         self.assertEqual(self.person.address, self.address)
 
     def test_person_str(self):
-        self.assertEqual(str(self.person), f'Test Person ({self.address})')
+        self.assertEqual(str(self.person), "Test Person / 1 Main St")

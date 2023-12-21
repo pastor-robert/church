@@ -3,7 +3,7 @@
 from django.test import TestCase
 from address.models import Address
 from .models import Crowd
-from .. import person
+import person
 
 class CrowdModelTest(TestCase):
     """Test models.Person model"""

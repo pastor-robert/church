@@ -29,5 +29,5 @@ class Person(Contact):
         # pylint: disable-next=no-member
         return f"{self.name} / {self.address or self.email or self.phone_number.as_national}"
 
-    def __str__(self):
-        return f"{self.name}"
+    #def __str__(self):
+    #    return self.name
